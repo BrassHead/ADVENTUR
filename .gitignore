@@ -1,0 +1,52 @@
+# Mooltipass .gitignore 
+#
+
+# OS/X
+#
+.DS_Store
+
+# Visual Studio Code
+#
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/c_cpp_properties.json
+browse.VC.db
+
+# build directories
+#
+[Dd]ebug/
+[Rr]elease/
+[Bb]uild/
+bin/
+obj/
+
+# Visual studio
+#
+.vs/
+*.VC.db
+
+# xcode
+#
+*.xcuserstate
+xcuserdata/
+DerivedData/
+
+# Executables and friends
+#
+*.exe
+*.ilk
+*.obj
+*.pdb
+*.sdf
+*.o
+
+# Node and friends
+#
+node_modules
+dist/
+
+# Adventure specific
+*.key
+*.rec

@@ -1,0 +1,71 @@
+*
+* Standard control file for linking Lattice C modules.
+*
+* Step 1 - initialisation
+* =======================
+*
+* C initialisation must be included first.
+*
+INPUT   \lclib\startup.bin
+*
+* Step 2 - user modules
+* =====================
+*
+* Now include a single user module
+* (from the command line).
+*
+INPUT adv.bin
+INPUT error.bin
+INPUT advglob.bin
+INPUT cache.bin
+INPUT command.bin
+INPUT condtio.bin
+INPUT exec.bin
+INPUT process.bin
+INPUT savgm.bin
+INPUT say.bin
+INPUT showop.bin
+INPUT symtab.bin
+INPUT util.bin
+INPUT values.bin
+INPUT webster.bin
+INPUT ..\kio\closek.bin
+*INPUT ..\kio\creatk.bin
+*INPUT ..\kio\dupk.bin
+*INPUT ..\kio\writek.bin
+INPUT ..\kio\kioglob.bin
+INPUT ..\kio\getblk.bin
+*INPUT ..\kio\makblk.bin
+INPUT ..\kio\maknam.bin
+INPUT ..\kio\mapkey.bin
+INPUT ..\kio\putblk.bin
+*INPUT ..\kio\putrec.bin
+INPUT ..\kio\mapblk.bin
+INPUT ..\kio\openk.bin
+INPUT ..\kio\readk.bin
+INPUT ..\kio\getrec.bin
+*
+* Sigh, I wish they included a library utility with this sucker
+*
+*
+* For each extra module you want to include in the
+* link include a line of the form:
+*
+* INPUT <file name>
+*
+* Step 3 - C library
+* ==================
+*
+* C library - must always be included.
+*
+LIBRARY \lclib\clib.bin
+*
+* Step 4 - GEM graphics library
+* =============================
+*
+* GEM graphics library - only include if your program
+* is trying to access graphics routines
+* (by uncommenting the line).
+*
+*LIBRARY c:\lclib\gemlib.bin
+*
