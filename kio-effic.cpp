@@ -9,14 +9,12 @@
 **
 */
 
-#include "kio.h"
+#include "kio.hpp"
 
-main (argc,argv)
-int argc ;
-char *argv[] ;
+int main (int argc, char *argv[])
 {
 	int fd ;
-	register int i, j, free ;
+	int i, j, free ;
 	int used ;
 
 	if ( argc != 2 )
@@ -65,12 +63,4 @@ char *argv[] ;
 	
 	closek (fd) ;
 	exit (0) ;
-}
-
-error (rnam,a1,a2,a3,a4,a5)
-char *rnam, *a1, *a2, *a3, *a4, *a5 ;
-{
-	printf ("%s: ",rnam) ;
-	printf (a1,a2,a3,a4,a5) ;
-	exit (1) ;
 }

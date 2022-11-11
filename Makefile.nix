@@ -22,3 +22,6 @@ clean:
 	cd src/munge ; rm -f munge mlib.a *.o
 	cd src/adv ; rm -f adv alib.a *.o
 	rm -f adv.key adv.rec
+
+kio-effic: kio-effic.cpp
+	c++ --std=c++11 -Wno-format-security -o kio-effic kio-effic.cpp
