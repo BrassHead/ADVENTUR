@@ -1,27 +1,17 @@
 # Something quick and dirty... you must put things where you want...
 #
-all:
-	cd src/kio ; make
-	cd src/munge ; make
+all: munge
 	cd src/adv ; make
-	src/munge/munge < comcave
+	src/munge comcave
 	@echo "All done."
 
-lint:
-	cd src/kio ; make lint
-	cd src/munge ; make lint
-	cd src/adv ; make lint
-
-print:
-	cd src/kio ; make print
-	cd src/munge ; make print
-	cd src/adv ; make print
-
 clean:
-	cd src/kio ; rm -f klib.a *.o
-	cd src/munge ; rm -f munge mlib.a *.o
+	rm -f munge kio-effic
 	cd src/adv ; rm -f adv alib.a *.o
 	rm -f adv.key adv.rec
 
-kio-effic: kio-effic.cpp
+kio-effic: kio-effic.cpp kio.h
 	c++ --std=c++11 -Wno-format-security -o kio-effic kio-effic.cpp
+
+munge: munge.cpp kio.h fio.h
+	c++ --std=c++11 -Wno-format-security -o munge munge.cpp

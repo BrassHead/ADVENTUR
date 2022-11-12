@@ -15,6 +15,7 @@
 #include <stdarg.h>
 
 #if defined(_MSDOS) || defined(_WIN32)
+
 	#include <io.h>
 	#define creat _create
 	#define open _open
@@ -25,7 +26,9 @@
 	#define READONLY	_O_RDWR
 	#define READWRITE	_O_RDWR
 	#define O_RAW		_O_BINARY
+
 #elif defined(__linux__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
+
 	#include <unistd.h>
 	#include <sys/stat.h>
 	//#include <sys/file.h>
@@ -36,6 +39,7 @@
 	#define READONLY	O_RDONLY
 	#define READWRITE	O_RDWR
 	#define O_RAW		0
+
 #endif
 
 
@@ -46,6 +50,9 @@
 
 #define EXISTING	0
 #define NEW		1
+
+namespace kio {
+	
 
 struct mkey
 {
@@ -95,7 +102,7 @@ template<typename... Args> void error(const char *rnam, const char *fmt, Args...
 }
 
 
-void MakNam (char *name)
+void MakNam ( const char *name )
 {
 	(void) strncpy (knam,name,15) ;
 	(void) strncpy (rnam,name,15) ;
@@ -206,7 +213,7 @@ int closek (int unit)
 }
 
 
-int creatk (char * name)
+int creatk ( const char * name )
 {
 	int i ;
 
@@ -345,3 +352,5 @@ int writek ( int unit, int key, char *buffer, int size )
 	Modified++ ;
 	return (size) ;
 }
+
+} // namespace kio

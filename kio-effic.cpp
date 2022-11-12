@@ -10,6 +10,7 @@
 */
 
 #include "kio.hpp"
+using namespace kio ;
 
 int main (int argc, char *argv[])
 {

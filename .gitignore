@@ -41,6 +41,7 @@ DerivedData/
 *.pdb
 *.sdf
 *.o
+*.dSYM
 
 # Node and friends
 #
@@ -51,3 +52,4 @@ dist/
 *.key
 *.rec
 kio-effic
+munge
