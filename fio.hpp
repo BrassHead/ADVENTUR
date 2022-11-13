@@ -22,6 +22,8 @@
 #define	STDIN	    0
 #define	STDOUT	    1
 
+
+
 #if defined(_MSDOS) || defined(_WIN32)
 
 	#define fileno 		_fileno
@@ -44,10 +46,9 @@
 #define sep(c)		( (c) == BLANK || (c) == TAB || (c) == COMMA )
 #define com(c)		( (c) == '*' || (c) == '{' )
 
-
-// Forward declarations
-int pop ();
-int push ( int value );
+#define STKSIZ		5
+static int stack[STKSIZ] ;
+static short int sp = 0 ;
 
 
 namespace fio {
@@ -134,6 +135,22 @@ char *strsav ( const char *s )
     pcmem += n ;
     (void) strcpy (p,s) ;
     return (p) ;
+}
+
+
+int push ( int value )
+{
+    if ( sp >= STKSIZ )
+        return (ERROR) ;
+    stack[sp++] = value ;
+    return (value) ;
+}
+
+int pop ()
+{
+    if ( sp < 1 )
+        return (ERROR) ;
+    return ( stack[--sp] ) ;
 }
 
 

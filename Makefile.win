@@ -1,0 +1,60 @@
+#
+# Makefile for the Adventure interpreter.
+# 	(c) Ken Wellsch 1985
+#
+#  Permission is hereby granted to all users to possess, use, copy,
+#  distribute, and modify the programs and files in this package
+#  provided it is not for direct commercial benefit and secondly,
+#  that this notice and all modification information be maintained
+#  along with the package.
+#
+# Modified for Atari ST make B. Bray -- 86-09-17
+# Modified for C7 Quickwin   B. Bray -- 92-05-13
+# Modified for C++ unibuild  B. Bray -- 22-11-12
+#
+# Usage:     NMAKE option (build)
+#    or:     NMAKE clean  (erase all compiled files)
+#
+# option:    DEBUG=[0|1]  (DEBUG not defined is equivalent to DEBUG=0)
+#
+#	     Note upper case DEBUG.
+#
+
+CPPFLAGS= /AL /W3 /Zp /Mq /G2 /Za
+LINKFLAGS=/NOD /NOI /ONERROR:NOEXE
+
+!if "$(DEBUG)"=="1"
+CPPFLAGS=/D_DEBUG $(CPPFLAGS) /Od /Zi /f
+LINKFLAGS=$(LINKFLAGS) /COD
+LIBS=
+!else
+CPPFLAGS=$(CPPFLAGS) /Oselg /Gs
+LINKFLAGS=$(LINKFLAGS)  
+LIBS=
+!endif
+
+GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
+  adv_db/labels.d adv_db/moves.d adv_db/nulls.d adv_db/objects.d \
+  adv_db/objsyn.d adv_db/place.d adv_db/repeat.d adv_db/text.d adv_db/vars.d \
+  adv_db/verbs.d
+
+
+all: adv.exe munge.exe adv.rec adv.key kio-effic.exe
+
+adv.exe: adv.cpp kio.hpp fio.hpp
+    c++ $(CPPFLAGS) adv.cpp $(LIBS) /Feadv.exe
+
+munge.exe: munge.cpp kio.hpp fio.hpp
+    c++ $(CPPFLAGS) munge.cpp $(LIBS) /Femunge.exe
+
+kio-effic.exe: kio-effic.cpp kio.hpp
+    c++ $(CPPFLAGS) kio-effic.cpp $(LIBS) /Fekio-effic.exe
+
+adv.rec adv.key: adv.exe comcave $(GAME)
+    munge.exe comcave
+
+clean:
+	del adv.exe munge.exe adv.rec adv.key kio-effic.exe
+
+.PHONY: all clean
+

@@ -1,0 +1,43 @@
+#
+# Makefile for the Adventure interpreter.
+# 	(c) Ken Wellsch 1985
+#
+#  Permission is hereby granted to all users to possess, use, copy,
+#  distribute, and modify the programs and files in this package
+#  provided it is not for direct commercial benefit and secondly,
+#  that this notice and all modification information be maintained
+#  along with the package.
+#
+# Modified for Atari ST make B. Bray -- 86-09-17
+# Modified for C7 Quickwin   B. Bray -- 92-05-13
+# Modified for C++ unibuild  B. Bray -- 22-11-12
+#
+
+
+GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
+  adv_db/labels.d adv_db/moves.d adv_db/nulls.d adv_db/objects.d \
+  adv_db/objsyn.d adv_db/place.d adv_db/repeat.d adv_db/text.d adv_db/vars.d \
+  adv_db/verbs.d
+
+all: adv munge kio-effic adv.rec adv.key
+
+kio-effic: kio-effic.cpp kio.hpp
+	c++ --std=c++11 -Wno-format-security -o kio-effic kio-effic.cpp
+
+munge: munge.cpp kio.hpp fio.hpp
+	c++ --std=c++11 -Wno-format-security -o munge munge.cpp
+
+adv: adv.cpp kio.hpp fio.hpp
+	c++ -g --std=c++11 -Wno-format-security -o adv adv.cpp
+
+adv.rec adv.key: adv comcave $(GAME)
+	./munge comcave
+
+debug play: adv adv.rec adv.key
+	./adv
+
+clean:
+	rm -f munge kio-effic adv
+	rm -f adv.key adv.rec
+
+.PHONY: all clean

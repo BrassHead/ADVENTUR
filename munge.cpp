@@ -75,8 +75,6 @@ using namespace fio ;
 #define MEMSIZ		1100
 #define TABSIZ		256
 
-#define STKSIZ		5
-
 
 #define status(key)	( state[(key)/1000] )
 
@@ -246,9 +244,6 @@ struct cm commnd [MAXCOM] =
     "VARIABLE",	VARIABLE,
     "VERB",		VERB
 } ;
-
-static int stack[STKSIZ] ;
-static short int sp = 0 ;
 
 ////////////////////////////////////////////////////////////////
 
@@ -1336,22 +1331,6 @@ int type ( int key )
     if ( key < 0 || key > MAXKEY )
         return (0) ;
     return (clss[key/1000]) ;
-}
-
-
-int push ( int value )
-{
-    if ( sp >= STKSIZ )
-        return (ERROR) ;
-    stack[sp++] = value ;
-    return (value) ;
-}
-
-int pop ()
-{
-    if ( sp < 1 )
-        return (ERROR) ;
-    return ( stack[--sp] ) ;
 }
 
 

@@ -31,11 +31,9 @@
 
 	#include <unistd.h>
 	#include <sys/stat.h>
-	//#include <sys/file.h>
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <string.h>
-	//#include <errno.h>
 	#define READONLY	O_RDONLY
 	#define READWRITE	O_RDWR
 	#define O_RAW		0
@@ -192,6 +190,32 @@ int GetBlk (int b)
 }
 
 
+int GetRec (
+  long int loc,
+  char *buf,
+  short int size
+) {
+	(void) lseek (rfd,loc,0) ;
+	if ( read (rfd,buf,size) != size )
+		return (ERROR) ;
+	buf[size] = 0 ;
+	return (size) ;
+}
+
+
+long int PutRec (char *buf, int size)
+{
+	long int loc ;
+
+	loc = RecLoc ;
+	(void) lseek (rfd,loc,0) ;
+	if ( write (rfd,buf,size) != size )
+		return (ERROR) ;
+	RecLoc += ((long) size) ;
+	return (loc) ;
+}
+
+
 int closek (int unit)
 {
 	(void) close (rfd) ;
@@ -274,20 +298,7 @@ int dupk ( int unit, int oldkey, int newkey)
 }
 
 
-int GetRec (
-  long int loc,
-  char *buf,
-  short int size
-) {
-	(void) lseek (rfd,loc,0) ;
-	if ( read (rfd,buf,size) != size )
-		return (ERROR) ;
-	buf[size] = 0 ;
-	return (size) ;
-}
-
-
-int openk (char *name)
+int openk ( const char *name )
 {
 	(void) MakNam (name) ;
 
@@ -299,19 +310,6 @@ int openk (char *name)
 		error ("Openk","unable to read super block!") ;
 
 	return (EXISTING) ;
-}
-
-
-long int PutRec (char *buf, int size)
-{
-	long int loc ;
-
-	loc = RecLoc ;
-	(void) lseek (rfd,loc,0) ;
-	if ( write (rfd,buf,size) != size )
-		return (ERROR) ;
-	RecLoc += ((long) size) ;
-	return (loc) ;
 }
 
 
