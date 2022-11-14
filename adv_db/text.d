@@ -5,15 +5,16 @@ TEXT	SOK!
 TEXT	BLANK
 TEXT	OK!
 TEXT	LOGON
-	Welcome to the *new* UNIX Adventure!  Say "NEWS" to get up-to-date
+	Welcome to the *new* UNIX Adventure!  Say "NEWS" to get up-to-date
 	game details.
  
 TEXT	NEWSDATA
  
-	This is the brand-spanking-new version of UNIX Adventure.
-	The cave is essentially stable at this point except for bug
-	fixes being done as needed.  The cave is almost twice as big as
-	before, and has lots of new creatures in it - have fun!
+	This is the "brand-spanking-new version" of UNIX Adventure from
+	1985 ported from a 1979 original. The cave was essentially stable
+	at that point "except for bug fixes being done as needed".  The
+	cave is almost twice as big as before, and has lots of new
+	creatures in it - have fun!
  
 	Please contact the local game guru if anything weird happens (that
 	is, anything weird that looks like it shouldn't happen).  In
@@ -23,7 +24,12 @@ TEXT	NEWSDATA
 	of Adventure for the Xerox SIGMA-9 and other Honeywell systems.
 	Ken Wellsch designed and wrote the C version for running on UNIX
 	systems which uses the original database.  This program was converted
-	for the Atari ST by Brian Bray.
+	for the Atari ST by Brian Bray in 1986 who for some strange reason
+	opened the code in 2022 to make it run on modern machines in all it's
+	fixed width text glory.
+
+	Copyright (c) 1979 David Platt    Database & Methods
+	Copyright (c) 1984 Ken Wellsch    C Code & Modifications
  
 TEXT	INTRO
 	Somewhere nearby is Colossal Cave, where others have found fortunes in

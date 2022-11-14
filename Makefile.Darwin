@@ -8,11 +8,10 @@
 #  that this notice and all modification information be maintained
 #  along with the package.
 #
-# Modified for Atari ST make B. Bray -- 86-09-17
-# Modified for C7 Quickwin   B. Bray -- 92-05-13
-# Modified for C++ unibuild  B. Bray -- 22-11-12
+# Modified for Atari ST make 	B. Bray -- 86-09-17
+# Modified for C7 Quickwin   	B. Bray -- 92-05-13
+# Modified for C++ unity build  B. Bray -- 22-11-12
 #
-
 
 GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
   adv_db/labels.d adv_db/moves.d adv_db/nulls.d adv_db/objects.d \
@@ -30,7 +29,7 @@ munge: munge.cpp kio.hpp fio.hpp
 adv: adv.cpp kio.hpp fio.hpp
 	c++ -g --std=c++11 -Wno-format-security -o adv adv.cpp
 
-adv.rec adv.key: adv comcave $(GAME)
+adv.rec adv.key: munge comcave $(GAME)
 	./munge comcave
 
 debug play: adv adv.rec adv.key
