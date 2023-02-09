@@ -104,8 +104,8 @@ void MakNam ( const char *name )
 {
 	(void) strncpy (knam,name,15) ;
 	(void) strncpy (rnam,name,15) ;
-	(void) strncat (knam,".key",20) ;
-	(void) strncat (rnam,".rec",20) ;
+	(void) strncat (knam,".key",19) ;
+	(void) strncat (rnam,".rec",19) ;
 
 	return ;
 }

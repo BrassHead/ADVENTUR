@@ -8,6 +8,8 @@
         "en"
     ],
     "files.associations": {
-        "Makefile.*": "makefile"
+        "Makefile.*": "makefile",
+        "limits": "cpp",
+        "type_traits": "cpp"
     }
 }
