@@ -745,6 +745,37 @@ int pcstat ()
 #endif // CACHE
 
 
+#ifdef SHOWOP
+
+void showop ( int active, int op, short args[3])
+{
+    int n, i ;
+
+    if ( active )
+        printf ("%5d: ",CurKey) ;
+    else
+        printf ("<skip> ") ;
+
+    if ( op < 0 || op >= 58 )
+    {
+        printf ("bad opcode (%d)\n",op) ;
+        return ;
+    }
+
+    printf ("%-7.7s",ops[op]) ;
+
+    n = opnum (op) ;
+
+    for ( i = 0 ; i < n ; i++ )
+        printf (" %5d",args[i]) ;
+    
+    printf ("\n") ;
+    return ;
+}
+
+#endif // SHOWOP
+
+
 void setup ()
 {
     int i ;
@@ -1326,37 +1357,6 @@ void saynam ( int key, int op)
 }
 
 
-#ifdef SHOWOP
-
-void showop ( int active, int op, short args[3])
-{
-    int n, i ;
-
-    if ( active )
-        printf ("%5d: ",CurKey) ;
-    else
-        printf ("<skip> ") ;
-
-    if ( op < 0 || op >= 58 )
-    {
-        printf ("bad opcode (%d)\n",op) ;
-        return ;
-    }
-
-    printf ("%-7.7s",ops[op]) ;
-
-    n = opnum (op) ;
-
-    for ( i = 0 ; i < n ; i++ )
-        printf (" %5d",args[i]) ;
-    
-    printf ("\n") ;
-    return ;
-}
-
-#endif // SHOWOP
-
-
 void define ( char *nam, int val )
 {
     struct symstr *p ;
@@ -1650,7 +1650,7 @@ void executive ( int a, int b)
 int condition ( int bp, short cbuf[], int len )
 {
     int i, cond, instr ;
-    int op[3], lmode ;
+    short op[3], lmode ;
     int n, negate, passon ;
 
     negate = 0 ;

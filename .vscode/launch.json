@@ -33,6 +33,14 @@
         {
             "type": "lldb",
             "request": "launch",
+            "name": "Debug adv",
+            "program": "${workspaceFolder}/adv",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
             "name": "Debug munge",
             "program": "${workspaceFolder}/munge",
             "args": ["comcave"],
