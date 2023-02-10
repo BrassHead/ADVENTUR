@@ -21,13 +21,13 @@ GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
 all: adv munge kio-effic adv.rec adv.key
 
 kio-effic: kio-effic.cpp kio.hpp
-	c++ --std=c++11 -Wno-format-security -o kio-effic kio-effic.cpp
+	c++ --std=c++11 -g -Wno-format-security -o kio-effic kio-effic.cpp
 
 munge: munge.cpp kio.hpp fio.hpp
-	c++ --std=c++11 -Wno-format-security -o munge munge.cpp
+	c++ --std=c++11 -g -Wno-format-security -o munge munge.cpp
 
 adv: adv.cpp kio.hpp fio.hpp
-	c++ -g --std=c++11 -Wno-format-security -o adv adv.cpp
+	c++ -g --std=c++11 -g -Wno-format-security -o adv adv.cpp
 
 adv.rec adv.key: munge comcave $(GAME)
 	./munge comcave

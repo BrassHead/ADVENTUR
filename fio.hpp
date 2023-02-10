@@ -22,7 +22,9 @@
 #define	STDIN	    0
 #define	STDOUT	    1
 
-
+#if !defined(ERROR)
+	#define ERROR		-1
+#endif
 
 #if defined(_MSDOS) || defined(_WIN32)
 
