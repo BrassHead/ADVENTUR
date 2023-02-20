@@ -22,7 +22,7 @@
 #  DEALINGS IN THE SOFTWARE.
 
 
-TARGETS = all build clean install debug play
+TARGETS = all build test clean install debug play
 
 $(TARGETS):
 	make -f Makefile.`uname` $@

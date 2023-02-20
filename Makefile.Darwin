@@ -18,7 +18,10 @@ GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
   adv_db/objsyn.d adv_db/place.d adv_db/repeat.d adv_db/text.d adv_db/vars.d \
   adv_db/verbs.d
 
-all: adv munge kio-effic adv.rec adv.key
+all: build test
+
+build: adv munge kio-effic
+test: build adv.rec adv.key
 
 kio-effic: kio-effic.cpp kio.hpp
 	c++ --std=c++11 -g -Wno-format-security -o kio-effic kio-effic.cpp
@@ -39,4 +42,4 @@ clean:
 	rm -f munge kio-effic adv
 	rm -f adv.key adv.rec
 
-.PHONY: all clean
+.Phony: all build clean install debug sandbox test
