@@ -20,7 +20,8 @@
 #	     Note upper case DEBUG.
 #
 
-CPPFLAGS= /AL /W3 /Zp /Mq /G2 /Za
+CPP = cl
+CPPFLAGS=
 LINKFLAGS=/NOD /NOI /ONERROR:NOEXE
 
 !if "$(DEBUG)"=="1"
@@ -28,7 +29,7 @@ CPPFLAGS=/D_DEBUG $(CPPFLAGS) /Od /Zi /f
 LINKFLAGS=$(LINKFLAGS) /COD
 LIBS=
 !else
-CPPFLAGS=$(CPPFLAGS) /Oselg /Gs
+CPPFLAGS=$(CPPFLAGS) /O2 /Gs
 LINKFLAGS=$(LINKFLAGS)  
 LIBS=
 !endif
@@ -39,22 +40,22 @@ GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
   adv_db/verbs.d
 
 
-all: adv.exe munge.exe adv.rec adv.key kio-effic.exe
+all play: adv.exe munge.exe adv.rec adv.key kio-effic.exe
 
 adv.exe: adv.cpp kio.hpp fio.hpp
-    c++ $(CPPFLAGS) adv.cpp $(LIBS) /Feadv.exe
+    $(CPP) $(CPPFLAGS) adv.cpp $(LIBS) /Feadv.exe
 
 munge.exe: munge.cpp kio.hpp fio.hpp
-    c++ $(CPPFLAGS) munge.cpp $(LIBS) /Femunge.exe
+    $(CPP) $(CPPFLAGS) munge.cpp $(LIBS) /Femunge.exe
 
 kio-effic.exe: kio-effic.cpp kio.hpp
-    c++ $(CPPFLAGS) kio-effic.cpp $(LIBS) /Fekio-effic.exe
+    $(CPP) $(CPPFLAGS) kio-effic.cpp $(LIBS) /Fekio-effic.exe
 
 adv.rec adv.key: adv.exe comcave $(GAME)
     munge.exe comcave
 
 clean:
-	del adv.exe munge.exe adv.rec adv.key kio-effic.exe
+	del adv.exe munge.exe adv.rec adv.key kio-effic.exe *.obj
 
-.PHONY: all clean
+.PHONY: all clean play
 

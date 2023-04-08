@@ -17,7 +17,11 @@
 #if defined(_MSDOS) || defined(_WIN32)
 
 	#include <io.h>
-	#define creat _create
+	#include <stdlib.h>
+	#include <stdio.h>
+	#include <process.h>
+	#include <string.h>
+	#define creat _creat
 	#define open _open
 	#define lseek _lseek
 	#define write _write
