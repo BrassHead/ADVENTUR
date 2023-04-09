@@ -21,12 +21,14 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 
-!if "$(OS)" == "Windows_NT"
-MAKE = nmake
-UNAME = Windows
+# Mixed make and nmake \
+!if "$(OS)" == "Windows_NT" \
+MAKE = nmake \
+UNAME = Windows \
 !else
 MAKE = make
 UNAME = `uname`
+# \
 !endif
 
 TARGETS = all build test clean install debug play
