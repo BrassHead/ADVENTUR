@@ -40,7 +40,7 @@ GAME = adv_db/action.d adv_db/bits.d adv_db/define.d adv_db/init.d \
   adv_db/verbs.d
 
 
-all play: adv.exe munge.exe adv.rec adv.key kio-effic.exe
+all play: adv.exe munge.exe kio-effic.exe adv.rec adv.key
 
 adv.exe: adv.cpp kio.hpp fio.hpp
     $(CPP) $(CPPFLAGS) adv.cpp $(LIBS) /Feadv.exe
@@ -51,7 +51,7 @@ munge.exe: munge.cpp kio.hpp fio.hpp
 kio-effic.exe: kio-effic.cpp kio.hpp
     $(CPP) $(CPPFLAGS) kio-effic.cpp $(LIBS) /Fekio-effic.exe
 
-adv.rec adv.key: adv.exe comcave $(GAME)
+adv.rec adv.key: munge.exe comcave $(GAME)
     munge.exe comcave
 
 clean:
