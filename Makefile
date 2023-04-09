@@ -22,9 +22,9 @@
 #  DEALINGS IN THE SOFTWARE.
 
 # Mixed make and nmake \
-!if "$(OS)" == "Windows_NT" \
-MAKE = nmake \
-UNAME = Windows \
+!if "$(OS)" == "Windows_NT" # \
+MAKE = nmake # \
+UNAME = Windows # \
 !else
 MAKE = make
 UNAME = `uname`
